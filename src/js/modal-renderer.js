@@ -1,18 +1,18 @@
 import filmCardTemplate from '../templates/modalFilmTemplate.hbs';
 
 class ModalFilmRenderer {
-  modalFilDetailContainer;
+  #modalFilDetailContainer;
 
   constructor() {
-    this.modalFilDetailContainer = document.querySelector('.film-detail');
+    this.#modalFilDetailContainer = document.querySelector('.film-detail');
   }
 
   render(data) {
-    this.modalFilDetailContainer.insertAdjacentHTML('beforeend', filmCardTemplate(data));
+    this.#modalFilDetailContainer.insertAdjacentHTML('beforeend', filmCardTemplate(data));
   }
 
   clear() {
-    this.modalFilDetailContainer.innerHTML = '';
+    this.#modalFilDetailContainer.innerHTML = '';
   }
 }
 
