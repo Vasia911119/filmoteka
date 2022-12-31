@@ -8,7 +8,6 @@ const myStack = new Stack({
   animation: 'slide',
   dir1: 'up',
   dir2: 'right',
-  // notify position
   firstpos1: document.documentElement.clientHeight / 2,
   firstpos2: document.documentElement.clientWidth / 2 - 190,
 

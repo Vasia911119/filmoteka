@@ -4,7 +4,6 @@ import { error } from './notify';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
 import '@pnotify/core/dist/BrightTheme.css';
-import { filmLoader } from './library-service';
 import {addSpinner, removeSpinner} from './spinner';
 import { genreLoader } from './genres-service';
 
@@ -30,7 +29,6 @@ async function renderMovieOnStartPage() {
     data.map(film => 
       {
         film.genres = genreLoader.getGenres(film.genre_ids);
-        // console.log("ЖАНРЫ = ", genres);
         if (film.genres.length > 3) 
         {
           film.genres = [...film.genres.slice(0, 3), { id: '00000', name: 'other...' }];

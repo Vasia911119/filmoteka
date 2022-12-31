@@ -1,9 +1,7 @@
 import searchForQuery from './responseForQuery';
 import templateQuery from '../templates/filmCard.hbs';
-import { success, error } from './notify.js';
+import { error } from './notify.js';
 import { addSpinner, removeSpinner } from './spinner';
-import {filmLoader} from './library-service';
-import { doc } from '@firebase/firestore';
 import { genreLoader } from './genres-service';
 
 //КОНСТАНТА- ключ к АPI
@@ -44,7 +42,6 @@ async function getFormTextContent(evt) {
             data.results.map(film => 
                 {
                     film.genres = genreLoader.getGenres(film.genre_ids);
-                    // console.log("ЖАНРЫ = ", genres);
                     if (film.genres.length > 3) 
                     {
                         film.genres = [...film.genres.slice(0, 3), { id: '00000', name: 'other...' }];
@@ -52,15 +49,12 @@ async function getFormTextContent(evt) {
                         ulListRef.insertAdjacentHTML('afterbegin', templateQuery(film));
                         searchFormInput.value = "";
                         removeSpinner();
-                });
-                           
+                });       
         } else {
             ulListRef.innerHTML = ``;
             searchFormInput.value = "";
             container.classList.add('visually-hidden')
-
             ulListRef.insertAdjacentHTML('afterbegin', `<p class="image-list-empty library-text neon xz js_correct">ничего не найдено...</p><span class="js-my_bcg"></span> `);
-
             error({
                 title: 'OOPS!',
                 text: 'Nothing found!',
